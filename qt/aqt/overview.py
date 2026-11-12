@@ -121,6 +121,8 @@ class Overview:
             self.edit_description()
         elif url.lower().startswith("http"):
             openLink(url)
+        elif url == "study_by_ai":
+            self.studyByAI()
         return False
 
     def _shortcutKeys(self) -> list[tuple[str, Callable]]:
@@ -285,6 +287,7 @@ class Overview:
         links = [
             ["O", "opts", tr.actions_options()],
         ]
+        links.append(["", "study_by_ai", "Study By AI"])
         is_dyn = self.mw.col.decks.current()["dyn"]
         if is_dyn:
             links.append(["R", "refresh", tr.actions_rebuild()])
@@ -325,3 +328,8 @@ class Overview:
         import aqt.customstudy
 
         aqt.customstudy.CustomStudy.fetch_data_and_show(self.mw)
+
+    def studyByAI(self) -> None:
+        from aqt.aistudy import start_ai_dialog
+
+        start_ai_dialog(self.mw)

@@ -158,6 +158,7 @@ def show(mw: aqt.AnkiQt) -> QDialog:
             "Susanna Björverud",
             "Sylvain Durand",
             "Tacutu",
+            "Taha Fawzy Elshrif",
             "Taylor Obyen",
             "Timm Preetz",
             "Timo Paulssen",

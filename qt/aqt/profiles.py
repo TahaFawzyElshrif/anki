@@ -13,7 +13,7 @@ import traceback
 from enum import Enum
 from pathlib import Path
 from typing import TYPE_CHECKING, Any
-
+import keyring
 import anki.lang
 import aqt.forms
 import aqt.sound
@@ -138,6 +138,7 @@ class ProfileManager:
         self.profile: dict | None = None
         self.invalid_profile_provided_on_commandline = False
         self.base = str(base)
+        self._GEMINI_KEYRING_SERVICE = "Anki Gemini API key" 
 
     def setupMeta(self) -> LoadMetaResult:
         # load metadata
@@ -528,6 +529,33 @@ create table if not exists profiles
 
     def set_next_video_driver(self) -> None:
         self.set_video_driver(self.video_driver().next())
+
+    # Gemini API key
+    ######################################################################
+    
+    
+
+
+    def set_gemini_api_key(self, val: str | None) -> None:
+        "Store the Gemini API key in the keyring."
+        if not self.name:
+            raise RuntimeError("No profile is loaded")
+
+        if val:
+            keyring.set_password(self._GEMINI_KEYRING_SERVICE, self.name, val)
+        else:
+            existing = keyring.get_password(self._GEMINI_KEYRING_SERVICE, self.name)
+            if existing is not None:
+                keyring.delete_password(self._GEMINI_KEYRING_SERVICE, self.name)
+
+
+    def get_gemini_api_key(self) -> str | None:
+        "Retrieve the Gemini API key from the keyring."
+
+        if not self.name:
+            raise RuntimeError("No profile is loaded")
+
+        return keyring.get_password(self._GEMINI_KEYRING_SERVICE, self.name)
 
     # Shared options
     ######################################################################

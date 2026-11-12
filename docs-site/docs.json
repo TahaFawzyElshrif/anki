@@ -22,6 +22,7 @@
       "source": "/faqs/when-problems-occur",
       "destination": "/manual/troubleshooting"
     },
+    { "source": "/anki-ai-integration.html", "destination": "/manual/anki-ai-integration" },
     { "source": "/addons.html", "destination": "/manual/addons" },
     { "source": "/background.html", "destination": "/manual/background" },
     { "source": "/backups.html", "destination": "/manual/backups" },
@@ -156,6 +157,8 @@
                   },
                   "manual/getting-help",
                   "manual/studying",
+                  "manual/anki-ai-integration",
+
                   "manual/editing",
                   {
                     "group": "Card Templates",

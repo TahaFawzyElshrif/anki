@@ -690,6 +690,7 @@ class Reviewer:
             self.web.update()
         elif url == "statesMutated":
             self._states_mutated = True
+
         else:
             print("unrecognized anki link:", url)
 
@@ -947,6 +948,8 @@ timerStopped = false;
         buf = "<center><table cellpadding=0 cellspacing=0><tr>"
         for ease, label in self._answerButtonList():
             buf += but(ease, label)
+        
+
         buf += "</tr></table>"
         return buf
 
